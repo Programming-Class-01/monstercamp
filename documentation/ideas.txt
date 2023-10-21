@@ -1,0 +1,51 @@
+    I do in fact like turtles
+        Amber 2023.
+
+Questions?
+    What does the end of the creature tree look like?
+        What does a creature look like?
+    Do we want to have "schools" of types.
+
+
+enum elementTypes {
+    earth,
+    water,
+    air
+        wind
+    energy
+        fire
+        plasma
+        electric
+    spirit?,
+}
+
+enum skills {
+    this will be skill names
+}
+
+age = datetime (displayed as yyyy-mm-dd (ISO 8601))
+
+enum Species {
+    turtleduck,
+    snakebird,
+}
+
+genetics = {
+    elementType,
+    species,
+}
+
+creature = {
+    species: string, 
+    name: string, 
+    uuid: string, 
+    elementType: {earth: 0.25, air: 0.25, water: 0.25, energy: 0.25}, 
+    growthTier: derived from age, 
+    skills:{skills enum}
+}
+
+Goals:
+    Sequence of systems and interactions
+    creature communication
+    time matches real world, but not punished for not playing.
+    Moral game for the masses (lolnope)
