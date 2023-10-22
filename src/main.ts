@@ -1,48 +1,56 @@
 import { v4 as uuidv4 } from "uuid"
 import { Ok, Result, Err } from "ts-results"
-console.log("Hello Dev");
+import { uuidGen } from "./creature.js"
+import { birthdayGen } from "./creature.js"
+import { nameGen } from "./creature.js"
+import { elements } from "./creature.js"
+import { stats } from "./creature.js"
+import { species } from "./creature.js"
 
-function uuidGen(): string {
-    return uuidv4();
+
+interface ICreature {
+    uuid: string
+    name: string
+    species: string
+    birthdate: Date
+    stats: number
 }
 
-// https://www.w3schools.blog/date-object-typescript links to a pretty good source of info 
-//      on the date constructor.
-function birthdayGen(): Date {
-    return new Date()
+interface ISpecies {
+    species: string
+    type: elements
+    baseStats: [strength: number, teamwork: number, mutationStability: number, fertility: number, stamina: number, cuteness: number, intelligence: number]
 }
 
-function getRandomIntInclusive(max: number, min = 1): Result<number, Error> {
-    if (max > Number.MAX_SAFE_INTEGER || max < 0) {
-        return Err(new Error(`maximum integer size exceeded or maximum set to less than zero.`))
+
+function generateCreature(): ICreature {
+    return {
+        uuid: uuidv4(),
+        name: "",
+        species: "",
+        birthdate: new Date(),
+        elementValues: {
+            Earth: Math.random(),
+            Wind: Math.random(),
+            Water: Math.random(),
+            Energy: Math.random(),
+            Fire: Math.random(),
+            Spirit: Math.random(),
+            Shadow: Math.random(),
+            Nature: Math.random(),
+        },
+        type: ,
+        skills: "",
+        stats: 0,
+        happiness: 0,
     }
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    const range = max - min + 1
-    return Ok(Math.floor(Math.random() * range + min));
-
 }
 
-// This function will need an array or enum of ***valid*** names to select at random.
-//TODO: REPLACE THE NUMBER HERE WITH THE CORRECT TYPE AFTER IT IS DEFINED. jEsUs ChRiSt DO NOT SKIP THIS TODO!!
-function nameGen(): Result<number, Error> {
-    const name = getRandomIntInclusive(12, 0);
-    if (name.err) return Err(new Error("getRandomIntInclusive returned an error. Verify array"));
-    const result = name.val
-    if (!result) return Err(new Error(`undefined, check your data for integrity`))
-    return Ok(result);
+function printCreature(creature: ICreature): void {
+    console.log(`${creature.name}`);
 }
+let creature = generateCreature(
 
+)
 
-
-const name = nameGen();
-const birthday = birthdayGen();
-const uuid = uuidGen();
-
-const monster = {
-    name,
-    birthday,
-    uuid
-}
-
-console.log(monster);
+printCreature(creature)

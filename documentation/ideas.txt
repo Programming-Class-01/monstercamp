@@ -1,11 +1,10 @@
-    I do in fact like turtles
+ I do in fact like turtles
         Amber 2023.
 
 Questions?
     What does the end of the creature tree look like?
         What does a creature look like?
     Do we want to have "schools" of types.
-
 
 enum elementTypes {
     earth,
@@ -44,8 +43,15 @@ creature = {
     skills:{skills enum}
 }
 
+Removed: 
+    elementValues: Record<elements, number>
+    type: elements
+    skills: string
+    happiness: number
+
 Goals:
     Sequence of systems and interactions
     creature communication
     time matches real world, but not punished for not playing.
     Moral game for the masses (lolnope)
+    Wonder trade breeding rejects (especially the bad ones)
