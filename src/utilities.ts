@@ -1,5 +1,6 @@
-import {Ok, Err, Result} from "ts-results"
-
+import { Result } from "ts-results"
+import pkg from "ts-results"
+const { Ok, Err } = pkg
 
 
 function getRandomIntInclusive(max: number, min = 1): Result<number, Error> {
@@ -12,4 +13,4 @@ function getRandomIntInclusive(max: number, min = 1): Result<number, Error> {
     return Ok(Math.floor(Math.random() * range + min));
 }
 
-export {getRandomIntInclusive}
+export { getRandomIntInclusive }

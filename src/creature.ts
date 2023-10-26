@@ -1,6 +1,8 @@
 import { getRandomIntInclusive } from "./utilities.js";
-import { Ok, Err, Result} from "ts-results"
 import { v4 as uuidv4 } from "uuid"
+import { Result } from "ts-results"
+import pkg from "ts-results"
+const { Ok, Err } = pkg
 
 function uuidGen(): string {
     return uuidv4();
@@ -64,7 +66,7 @@ enum species {
     cat = 'Cat',
     fox = 'Fox',
     catfox = 'Catfox',
-}s
+}
 
 
 export {uuidGen}

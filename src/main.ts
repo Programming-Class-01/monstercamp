@@ -14,6 +14,19 @@ interface ICreature {
     species: string
     birthdate: Date
     stats: number
+    elementValues: {
+        Earth: number,
+        Wind: number,
+        Water: number,
+        Energy: number,
+        Fire: number,
+        Spirit: number,
+        Shadow: number,
+        Nature: number,
+    },
+    type: string
+    skills: string
+    happiness: number
 }
 
 interface ISpecies {
@@ -21,13 +34,14 @@ interface ISpecies {
     type: elements
     baseStats: [strength: number, teamwork: number, mutationStability: number, fertility: number, stamina: number, cuteness: number, intelligence: number]
 }
-
-
 function generateCreature(): ICreature {
     return {
         uuid: uuidv4(),
-        name: "",
-        species: "",
+        name: "Wilfred",
+        // Thinking about making and calling a new function here for species, at least for testing generation purposes
+        // I'd love to hear if anybody had any ideas down the road for narrowing down what it gens based on breeding
+        // and/or where it's encountered.
+        species: species.duck,
         birthdate: new Date(),
         elementValues: {
             Earth: Math.random(),
@@ -39,16 +53,37 @@ function generateCreature(): ICreature {
             Shadow: Math.random(),
             Nature: Math.random(),
         },
-        type: ,
-        skills: "",
+        // TODO: Figure out how to randomly pick an element type for testing.
+        // TODO: Figure out how to handle breeding and what type it will generate.
+        type: elements.wind,
+        skills: "Those with which one may pay the bills",
         stats: 0,
         happiness: 0,
     }
 }
 
 function printCreature(creature: ICreature): void {
-    console.log(`${creature.name}`);
-}
+    console.log(`====================================
+    This Creature is a ${creature.species}.
+====================================
+Name: ${creature.name}
+Date of Birth: ${creature.birthdate}
+Type: ${creature.type}
+Stats: ${creature.stats}
+Current Happiness: ${creature.happiness}
+====================================
+    Elemental Values:
+====================================
+Earth: ${creature.elementValues.Earth}
+Wind: ${creature.elementValues.Wind}
+Water: ${creature.elementValues.Water}
+Energy: ${creature.elementValues.Energy}
+Fire: ${creature.elementValues.Fire}
+Spirit: ${creature.elementValues.Spirit}
+Shadow: ${creature.elementValues.Shadow}
+Nature: ${creature.elementValues.Nature}
+`)}
+
 let creature = generateCreature(
 
 )
