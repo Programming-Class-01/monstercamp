@@ -1,6 +1,7 @@
 import { Result } from "ts-results"
-import pkg from "ts-results"
-const { Ok, Err } = pkg
+import pkg from 'ts-results';
+const { Ok, Err } = pkg;
+
 
 
 function getRandomIntInclusive(max: number, min = 1): Result<number, Error> {

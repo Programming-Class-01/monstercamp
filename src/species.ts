@@ -1,5 +1,5 @@
-//import { species } from "./creature.js";
-//import { stats } from "./creature.js";
+// import { species } from "./creature.js";
+// import { stats } from "./creature.js";
 
 // interface ISpecies {
 //     speciesName: string,
@@ -24,7 +24,7 @@
 //     cuteness: 10, 
 //     intelligence: 10}
 
-//const speciesArray: readonly ISpecies[] = [
+// const speciesArray: readonly ISpecies[] = [
 //     {speciesName: `turtle`, baseStats: statHolder},
 //     {speciesName: `duck`, baseStats: statHolder},
 //     {speciesName: `turtleduck`, baseStats: statHolder},
