@@ -5,28 +5,88 @@ import pkg from 'ts-results';
 const { Ok, Err } = pkg;
 
 function uuidGen(): string {
-    return uuidv4();
+    return uuidv4()
 }
+
 function birthdayGen(): Date {
     return new Date()
 }
-// This function will need an array or enum of ***valid*** names to select at random.
-//TODO: REPLACE THE NUMBER HERE WITH THE CORRECT TYPE AFTER IT IS DEFINED. jEsUs ChRiSt DO NOT SKIP THIS TODO!!
-function speciesGen(): Result<number, Error> {
-    const name = getRandomIntInclusive(12, 0);
-    if (name.err) return Err(new Error("getRandomIntInclusive returned an error. Verify array"));
-    const result = name.val
-    if (!result) return Err(new Error(`undefined, check your data for integrity`))
-    return Ok(result);
+
+interface ISpecies {
+    speciesName: string
 }
 
-const creature = {
-    uuid: uuidGen(),
-    birthdate: birthdayGen(),
-    species: speciesGen().unwrapOr(() => {
-        console.error(`speciesGen failed, no valid species found`)
-        process.exit(1)
-    }),
+const speciesArray: ISpecies[] = [
+    { speciesName: `turtle` },
+    { speciesName: `duck` },
+    { speciesName: `turtleduck` },
+    { speciesName: `boar` },
+    { speciesName: `hound` },
+    { speciesName: `boarhound` },
+    { speciesName: `chicken` },
+    { speciesName: `hawk` },
+    { speciesName: `chickenhawk` },
+    { speciesName: `squirrel` },
+    { speciesName: `eel` },
+    { speciesName: `squirreel` },
+    { speciesName: `salamander` },
+    { speciesName: `firebird` },
+    { speciesName: `dragon` },
+    { speciesName: `owl` },
+    { speciesName: `bat` },
+    { speciesName: `owlbat` },
+    { speciesName: `rabbit` },
+    { speciesName: `deer` },
+    { speciesName: `rabbideer` },
+    { speciesName: `cat` },
+    { speciesName: `fox` },
+    { speciesName: `catfox` },
+]
+
+function speciesGen(speciesArray: ISpecies[]): Result<ISpecies, Error> {
+    const speciesIndex = getRandomIntInclusive(speciesArray.length - 1);
+    if (speciesIndex.err) {
+        return Err(new Error("getRandomIntInclusive returned an invalid output, verify speicesArray."))
+    }
+    if (!speciesIndex.val) {
+        return Err(new Error("getRandomIntInclusive returned a non-number output, verify array"))
+    }
+    const result = speciesArray[speciesIndex.val]
+    if (!result) { 
+        return Err(new Error(`speciesArray at ${speciesIndex.val} is undefined. Check array integrity`))
+    }
+    return Ok(result)
+
 }
 
-export {creature}
+interface ICreature {
+    uuid: string,
+    birthdate: Date,
+    species: ISpecies,
+    hunger: {
+        fullness: number,
+        satiation: number
+    }
+}
+
+function creatureBuilder(): Result<ICreature, Error> {
+    const uuid = uuidGen();
+    const birthdate = birthdayGen();
+    const speciesRaw = speciesGen(speciesArray)
+    if (speciesRaw.err) return Err(new Error("speciesGen returned an error, verify data input"))
+    if (!speciesRaw.val) return Err(new Error("speciesGen returned an invalid value, verify data integrity"))
+    const species = speciesRaw.val
+    const hunger = {
+        fullness: 10, 
+        satiation: 10
+    }
+
+    return Ok({
+        uuid,
+        birthdate,
+        species,
+        hunger
+    })
+}
+
+export { creatureBuilder }

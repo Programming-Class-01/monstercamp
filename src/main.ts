@@ -1,17 +1,16 @@
-import { creature } from "./creature.js"
+// import express from "express"
+import { creatureBuilder } from "./creature.js";
+// Reminder: We need at LEAST two views. 
 
-// interface ICreature {
-//     uuid: string
-//     species: string
-//     birthdate: Date
-// }
+// const app = express()
+// const port = 3000
 
+// app.get('/index.html', (_req, res) => {
+//     res.send('index.html')
+//   })
+  
+//   app.listen(port, () => {
+//     console.log(`Hey man, I'm just listening on port ${port}`)
+//   })
 
-
-
-console.log(`====================================
-    This Creature is a ${creature.species}.
-====================================
-Date of Birth: ${creature.birthdate}
-UUID: ${creature.uuid}`)
-
+console.log(creatureBuilder())
