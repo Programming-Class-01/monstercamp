@@ -12,5 +12,6 @@ import { creatureBuilder } from "./creature.js";
 //   app.listen(port, () => {
 //     console.log(`Hey man, I'm just listening on port ${port}`)
 //   })
+const creature = creatureBuilder()
 
-console.log(creatureBuilder())
+console.log(creature)

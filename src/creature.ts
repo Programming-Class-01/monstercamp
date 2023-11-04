@@ -45,11 +45,8 @@ const speciesArray: ISpecies[] = [
 
 function speciesGen(speciesArray: ISpecies[]): Result<ISpecies, Error> {
     const speciesIndex = getRandomIntInclusive(speciesArray.length - 1);
-    if (speciesIndex.err) {
-        return Err(new Error("getRandomIntInclusive returned an invalid output, verify speicesArray."))
-    }
-    if (!speciesIndex.val) {
-        return Err(new Error("getRandomIntInclusive returned a non-number output, verify array"))
+    if (!speciesIndex.ok) {
+        return Err(new Error("getRandomIntInclusive returned an invalid output, verify speciesArray."))
     }
     const result = speciesArray[speciesIndex.val]
     if (!result) { 
@@ -73,8 +70,7 @@ function creatureBuilder(): Result<ICreature, Error> {
     const uuid = uuidGen();
     const birthdate = birthdayGen();
     const speciesRaw = speciesGen(speciesArray)
-    if (speciesRaw.err) return Err(new Error("speciesGen returned an error, verify data input"))
-    if (!speciesRaw.val) return Err(new Error("speciesGen returned an invalid value, verify data integrity"))
+    if (!speciesRaw.ok) return Err(new Error("speciesGen returned an error, verify data input"))
     const species = speciesRaw.val
     const hunger = {
         fullness: 10, 
